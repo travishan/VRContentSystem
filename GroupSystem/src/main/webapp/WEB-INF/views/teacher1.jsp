@@ -48,77 +48,16 @@ ${pageContext.request.serverPort}${pageContext.request.contextPath}/">
             <link rel="icon" type="image/png" href="https://static-gs.gaoxiaobang.com/image/favicon/favicon-16x16.png" sizes="16x16">
             <link rel="shortcut icon" type="image/x-icon" href="https://static-gs.gaoxiaobang.com/image/favicon/favicon.ico">
             <link rel="stylesheet" type="text/css" href="css/lib.min.css">
-            
-            
-            
+
+
+
             <link rel="stylesheet" type="text/css" href="css/app.min.css">
-          
-			<link href="static/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
-			<link href="static/bootstrap-3.3.7-dist/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
-            
 
+            <link href="static/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
+            <link href="static/bootstrap-3.3.7-dist/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
 
+            <!--
 
-<script src="static/js/jquery-1.12.4.min.js"></script>
-<script src="static/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
-<script src="static/bootstrap-3.3.7-dist/js/bootstrap-datetimepicker.js"></script>
-<script src="static/bootstrap-3.3.7-dist/js/bootstrap-datetimepicker.fr.js"></script>
-<script type="text/javascript">
-	$(function() {
-		$("#task_add_modal_btn").click(function() {
-			//点击添加按钮打开模态框,设置模态框属性，点击背景不关闭
-			$('#taskAddModal').modal({
-				backdrop:'static'
-			});
-			
-			$('.form_date').datetimepicker({
-		        language:  'fr',
-		        weekStart: 1,
-		        todayBtn:  1,
-				autoclose: 1,
-				todayHighlight: 1,
-				startView: 2,
-				minView: 2,
-				forceParse: 0
-		    });
-		});
-		
-		$("#addTaskBtn").click(function() {
-			var str = $("#myForm").serialize();
-			alert(str);
-			 //发送ajax请求添加任务
-			$.ajax({
-				url:"task",
-				type:"POST",
-				data:str,
-				success:function(result){
-					console.log(result);
-					$('#taskAddModal').modal('hide');
-					location.reload(true);
-				}
-			}); 
-		})
-		
-	})
-
-
-</script>
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
             <script src="js1/hm.js"></script>
             <script src="js1/lib.min.js" id="seajsnode"></script>
 
@@ -132,7 +71,57 @@ ${pageContext.request.serverPort}${pageContext.request.contextPath}/">
             <script src="js1/config.min.js"></script>
 
             <script src="js1/business_app.min.js"></script>
+-->
             <script src="http://cdn.static.runoob.com/libs/angular.js/1.4.6/angular.min.js"></script>
+
+            <script src="static/js/jquery-1.12.4.min.js"></script>
+            <script src="static/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+            <script src="static/bootstrap-3.3.7-dist/js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
+            <script src="static/bootstrap-3.3.7-dist/js/bootstrap-datetimepicker.zh-CN.js" charset="UTF-8"></script>
+            <script type="text/javascript">
+                $('.form_date').datetimepicker({
+                    language: 'zh-CN',
+                    weekStart: 1,
+                    todayBtn: 1,
+                    autoclose: 1,
+                    todayHighlight: 1,
+                    startView: 2,
+                    minView: 2,
+                    forceParse: 0
+                });
+                
+                $(function() {
+                    //		$("#task_add_modal_btn").click(function() {
+                    //			//点击添加按钮打开模态框,设置模态框属性，点击背景不关闭
+                    //			$('#taskAddModal').modal({
+                    //				backdrop:'static'
+                    //			});
+
+
+                });
+
+                $("#addTaskBtn").click(function() {
+                var str = $("#myForm").serialize();
+                alert(str);
+                //发送ajax请求添加任务
+                $.ajax({
+                    url: "task",
+                    type: "POST",
+                    data: str,
+                    success: function(result) {
+                        console.log(result);
+                        $('#taskAddModal').modal('hide');
+                        location.reload(true);
+                    }
+                });
+                })
+
+                })
+
+            </script>
+
+
+
             <title>Insert title here</title>
 
 
@@ -191,7 +180,7 @@ ${pageContext.request.serverPort}${pageContext.request.contextPath}/">
                     	        	];
                     	        }
                     	    }); */
-                    Console.log(baseHref);
+                    console.log(baseHref);
 
                     function manageGroup(e) {
                         var url = baseHref + "group/manageGroup?groupId=" + e.getAttribute("data-id");
@@ -240,9 +229,11 @@ ${pageContext.request.serverPort}${pageContext.request.contextPath}/">
                        })(gxb.settings); */
 
                 </script>
+                <!--
                 <script src="js1/ueditor.config.js"></script>
                 <script src="js1/ueditor.all.min.js"></script>
                 <script src="js1/gxb_log.js"></script>
+-->
                 <script>
                     var _hmt = _hmt || [];
                     (function() {
@@ -690,8 +681,8 @@ ${pageContext.request.serverPort}${pageContext.request.contextPath}/">
                                                             <li ng-class="{true:&#39;current&#39;,false:&#39;&#39;}[menu==1]" ng-click="menu=1" class="current">全部群组</li>
                                                             <li ng-class="{true:&#39;current&#39;,false:&#39;&#39;}[menu==2]" ng-click="menu=2">创建群组</li>
                                                             <li ng-class="{true:&#39;current&#39;,false:&#39;&#39;}[menu==3]" ng-click="menu=3">我的库存</li>
-                                                       		<li id="task_add_modal_btn"  ng-class="{true:&#39;current&#39;,false:&#39;&#39;}[menu==5]" ng-click="menu=5">发布任务</li>
-                                                       
+                                                            <li data-toggle="modal" data-target="#taskAddModal" ng-class="{true:&#39;current&#39;,false:&#39;&#39;}[menu==5]" ng-click="menu=5">发布任务</li>
+
                                                         </ul>
                                                     </div>
                                                 </div>
@@ -836,11 +827,15 @@ ${pageContext.request.serverPort}${pageContext.request.contextPath}/">
                                                                 </td>
                                                             </tr>
                                                             <tr>
-                                                                <td><p style="width:100%; height:100%;">群名称</p></td>
+                                                                <td>
+                                                                    <p style="width:100%; height:100%;">群名称</p>
+                                                                </td>
                                                                 <td><input type="text" style="width:100%; height:100%;" name="groupName" /></td>
                                                             </tr>
                                                             <tr>
-                                                                <td><p style="width:100%; height:100%;">群描述</p></td>
+                                                                <td>
+                                                                    <p style="width:100%; height:100%;">群描述</p>
+                                                                </td>
                                                                 <td><input type="text" style="width:100%; height:100%;" name="groupDesc" /></td>
                                                             </tr>
                                                             <tr>
@@ -851,6 +846,46 @@ ${pageContext.request.serverPort}${pageContext.request.contextPath}/">
                                                         <input type="submit" value="Submit">
                                                     </form>
 
+                                                </center>
+                                            </div>
+                                            <div class="ng-scope" ng-show="menu==5">
+                                                <center>
+                                                    <form class="form-horizontal" id="myForm">
+                                                        <div class="form-group">
+                                                            <label class="col-sm-2 control-label">开始时间</label>
+
+                                                            <div class="input-group date form_date col-md-5" data-date-format="yyyy-mm-dd" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+                                                                <input class="form-control" name="startTime" type="text" value="" readonly>
+                                                                <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+                                                                <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <label class="col-md-2 control-label">结束时间</label>
+
+                                                            <div class="input-group date form_date col-md-3" data-date="" data-date-format="yyyy-mm-dd" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+                                                                <input class="form-control" name="endTime" size="16" type="text" value="" readonly>
+                                                                <span class="input-group-addon" style="width:0px;height:0px;display:block;"><span class=" glyphicon-remove"></span></span>
+                                                                <span class="input-group-addon" style="width:0px;height:0px;display:none;"><span class=" glyphicon-calendar"></span></span>
+                                                            </div>
+                                                        </div>
+
+
+
+                                                        <div class="form-group">
+                                                            <label class="col-sm-2 control-label">群组列表</label>
+                                                            <label class="col-sm-10 control-label">&nbsp;</label>
+                                                            <c:forEach items="${sessionScope.groups}" var="group">
+                                                                <div class="checkbox col-sm-6">
+                                                                    <label>
+                                                                                <input type="checkbox" name="groupId" id="group_input_checkbox" value="${group.id }" >${group.groupName }
+                                                                              </label>
+                                                                </div>
+                                                            </c:forEach>
+                                                        </div>
+
+                                                    </form>
                                                 </center>
                                             </div>
                                         </div>
@@ -908,6 +943,7 @@ ${pageContext.request.serverPort}${pageContext.request.contextPath}/">
                         </ol>
                     </div>
                 </div>
+                <!--
                 <script>
                     (function() {
                         $.ajax({
@@ -983,6 +1019,7 @@ ${pageContext.request.serverPort}${pageContext.request.contextPath}/">
                     })();
 
                 </script>
+-->
 
                 </div>
 
@@ -1037,6 +1074,7 @@ ${pageContext.request.serverPort}${pageContext.request.contextPath}/">
                 </div>
 
 
+                <!--
                 <script>
                     (function() {
                         $('#nextStep').click(function() {
@@ -1213,84 +1251,83 @@ ${pageContext.request.serverPort}${pageContext.request.contextPath}/">
                     });
 
                 </script>
+-->
 
-<!-- 发布任务的模态框 -->
-<div class="modal fade" id="taskAddModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      
-     <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h3 class="modal-title">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;发布任务</h3>
-      </div>
-      
-      
-     <div class="modal-body">
-		 <form class="form-horizontal" id="myForm">
-			  <div class="form-group">
-			    <label class="col-sm-2 control-label">任务名称</label>
-			    <div class="col-sm-10">
-			      <input type="text" class="form-control" name="taskName" id="taskNameInput" placeholder="学习Py基础语法">
-			    </div>
-			  </div>
-			  
-			   <div class="form-group">
-			    <label class="col-sm-2 control-label">任务描述</label>
-			    <div class="col-sm-10">
-			      <textarea class="form-control" name="taskDesc" id="taskDescInput"></textarea>
-			    </div>
-			  </div>
-			  
-		  <div class="form-group">
-			    <label class="col-sm-2 control-label">开始时间</label>
-			   
-			    <div class="input-group date form_date col-sm-6"  data-date-format="yyyy-mm-dd" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
-                    <input class="form-control" name="startTime" type="text" value="" readonly>
-                     <span  class="input-group-addon" style="width:40px;height:35px;display:block;"><span class=" glyphicon-remove"></span></span>
-					<span  class="input-group-addon" style="width:40px;height:35px;display:none;"><span class=" glyphicon-calendar"></span></span>
-                </div>
-			  </div> 
-			  
-			   <div class="form-group">
-			    <label class="col-sm-2 control-label">结束时间</label>
-			   
-			    <div class="input-group date form_date col-sm-6" data-date="" data-date-format="yyyy-mm-dd" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
-                    <input class="form-control" name="endTime" size="16" type="text" value="" readonly>
-                    <span  class="input-group-addon" style="width:0px;height:0px;display:block;"><span class=" glyphicon-remove"></span></span>
-					<span  class="input-group-addon" style="width:0px;height:0px;display:none;"><span class=" glyphicon-calendar"></span></span>
-                </div>
-			  </div>
-			  
+                <!-- 发布任务的模态框 -->
+                <div class="modal fade" id="taskAddModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
 
-			  
-			  <div class="form-group">
-			    <label class="col-sm-2 control-label">群组列表</label>
-			    <label class="col-sm-10 control-label">&nbsp;</label>
-			   		<c:forEach items="${sessionScope.groups}" var="group">
-					   <div class="checkbox col-sm-6">
-								  <label>
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h3 class="modal-title">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;发布任务</h3>
+                            </div>
+
+
+                            <div class="modal-body">
+                                <form class="form-horizontal" id="myForm">
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">任务名称</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" class="form-control" name="taskName" id="taskNameInput" placeholder="学习Py基础语法">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">任务描述</label>
+                                        <div class="col-sm-10">
+                                            <textarea class="form-control" name="taskDesc" id="taskDescInput"></textarea>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">开始时间</label>
+
+                                        <div class="input-group date form_date col-sm-6" data-date-format="yyyy-mm-dd" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+                                            <input class="form-control" name="startTime" type="text" value="" readonly>
+                                            <span class="input-group-addon" style="width:40px;height:35px;display:block;"><span class=" glyphicon-remove"></span></span>
+                                            <span class="input-group-addon" style="width:40px;height:35px;display:none;"><span class=" glyphicon-calendar"></span></span>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-md-2 control-label">结束时间</label>
+
+                                        <div class="input-group date form_date col-md-3" data-date="" data-date-format="yyyy-mm-dd" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+                                            <input class="form-control" name="endTime" size="16" type="text" value="" readonly>
+                                            <span class="input-group-addon" style="width:0px;height:0px;display:block;"><span class=" glyphicon-remove"></span></span>
+                                            <span class="input-group-addon" style="width:0px;height:0px;display:none;"><span class=" glyphicon-calendar"></span></span>
+                                        </div>
+                                    </div>
+
+
+
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">群组列表</label>
+                                        <label class="col-sm-10 control-label">&nbsp;</label>
+                                        <c:forEach items="${sessionScope.groups}" var="group">
+                                            <div class="checkbox col-sm-6">
+                                                <label>
 								    <input type="checkbox" name="groupId" id="group_input_checkbox" value="${group.id }" >${group.groupName }
 								  </label>
-						</div>
-			   		</c:forEach>
-			  </div>
-			 
-		</form>
-      </div>
-      
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-        <button type="button" class="btn btn-primary" id="addTaskBtn">添加</button>
-      </div>
-      
-    </div>
-  </div>
-</div>
+                                            </div>
+                                        </c:forEach>
+                                    </div>
+
+                                </form>
+                            </div>
+
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                                <button type="button" class="btn btn-primary" id="addTaskBtn">添加</button>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
 
 
-<h1>jjjj${groups}</h1>
+                <h1>jjjj${groups}</h1>
         </body>
 
         </html>
-
-

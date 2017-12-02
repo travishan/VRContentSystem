@@ -18,7 +18,9 @@
             <link rel="icon" type="image/png" href="https://static-gs.class.gaoxiaobang.com/image/favicon/favicon-32x32.png" sizes="32x32">
             <link rel="icon" type="image/png" href="https://static-gs.class.gaoxiaobang.com/image/favicon/favicon-16x16.png" sizes="16x16">
             <link rel="shortcut icon" type="image/x-icon" href="https://static-gs.class.gaoxiaobang.com/image/favicon/favicon.ico">
-
+            
+            
+            
             <!--[if lte IE 9]>
     <script type="text/javascript">
         window.location.href = '//www.gaoxiaobang.com/expiration';
@@ -27,7 +29,8 @@
 
             <link rel="stylesheet" type="text/css" href="css/gxb.min.css">
             <link rel="stylesheet" type="text/css" href="css/plugin.min.css">
-
+            <link href="static/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
+			<link href="static/bootstrap-3.3.7-dist/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
 
 
 
