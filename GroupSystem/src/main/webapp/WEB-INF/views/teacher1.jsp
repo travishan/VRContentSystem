@@ -79,17 +79,6 @@ ${pageContext.request.serverPort}${pageContext.request.contextPath}/">
             <script src="static/bootstrap-3.3.7-dist/js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
             <script src="static/bootstrap-3.3.7-dist/js/bootstrap-datetimepicker.zh-CN.js" charset="UTF-8"></script>
             <script type="text/javascript">
-                $('.form_date').datetimepicker({
-                    language: 'zh-CN',
-                    weekStart: 1,
-                    todayBtn: 1,
-                    autoclose: 1,
-                    todayHighlight: 1,
-                    startView: 2,
-                    minView: 2,
-                    forceParse: 0
-                });
-                
                 $(function() {
                     //		$("#task_add_modal_btn").click(function() {
                     //			//点击添加按钮打开模态框,设置模态框属性，点击背景不关闭
@@ -97,7 +86,16 @@ ${pageContext.request.serverPort}${pageContext.request.contextPath}/">
                     //				backdrop:'static'
                     //			});
 
-
+                    $('.form_date').datetimepicker({
+                        language: 'zh-CN',
+                        weekStart: 1,
+                        todayBtn: 1,
+                        autoclose: 1,
+                        todayHighlight: 1,
+                        startView: 2,
+                        minView: 2,
+                        forceParse: 0
+                    });
                 });
 
                 $("#addTaskBtn").click(function() {
@@ -791,6 +789,7 @@ ${pageContext.request.serverPort}${pageContext.request.contextPath}/">
                                                 </div>
                                             </div>
                                             <div ng-show="menu==2" style="width:60%;height:60%;margin-top:24px;margin-left:24px;">
+<!--
                                                 <script>
                                                     function getFileUrl(sourceId) {
                                                         var url;
@@ -816,6 +815,7 @@ ${pageContext.request.serverPort}${pageContext.request.contextPath}/">
                                                     }
 
                                                 </script>
+-->
                                                 <center>
                                                     <form action="group/create" method="post" enctype="multipart/form-data">
                                                         <table style="border:1px">
@@ -1035,12 +1035,14 @@ ${pageContext.request.serverPort}${pageContext.request.contextPath}/">
         <i class="gxb-icon-toProblem"></i>
     </a>
                 </div>
+<!--
                 <script>
                     if (window.location.href.indexOf("teacher.") >= 0) {
                         $(".getMobile").hide();
                     }
 
                 </script>
+-->
 
                 <div class="dialogBottom">
                     <a href="javascript:;" onclick="toTop()">
