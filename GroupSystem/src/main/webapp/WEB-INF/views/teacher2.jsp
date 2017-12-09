@@ -29,8 +29,8 @@ ${pageContext.request.serverPort}${pageContext.request.contextPath}/">
             <link rel="stylesheet" type="text/css" href="css/gxb.min.css">
             <link rel="stylesheet" type="text/css" href="css/plugin.min.css">
             <link rel="stylesheet" type="text/css" href="css/stu.css">
-  			<link href="static/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
-			<link href="static/bootstrap-3.3.7-dist/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+            <link href="static/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
+            <link href="static/bootstrap-3.3.7-dist/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
 
 
 
@@ -160,123 +160,132 @@ ${pageContext.request.serverPort}${pageContext.request.contextPath}/">
                 });
 
             </script>
-            
-            
-         
-			<script src="static/js/jquery-1.12.4.min.js"></script>
-			<script src="static/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
-			<script src="static/bootstrap-3.3.7-dist/js/bootstrap-datetimepicker.js"></script>
-			<script src="static/bootstrap-3.3.7-dist/js/bootstrap-datetimepicker.fr.js"></script>	
-            <script type="text/javascript">
-            	$(function(){
-            		//全选按钮
-            		$('#selectAll').click(function(){
-            			$(":checkbox").prop("checked", true);
-            			return false;
-            		});
-            		
-            		//删除按钮
-            		//<input type="hidden" value="${group.id }" name="groupId">
-            		$('#delete').click(function(){
-						var ids = new Array();	
-            			$("input:checked").each(function(index,item){
-            				$(this).parent().parent().remove();
-            				ids[index]=$(item).val();
-            			});
-            			
-            			var gid = $('input[name="groupId"]').val();
-            			var url = "group/deleteStu";
-            			var args = {"stus":ids,"groupId":gid,"_method":"delete","date":new Date()};
-            			$.ajax({  
-                             type:'post',  
-                             traditional :true,  
-                             url:url,  
-                             data:args,  
-                             success:function(data){  
-                                 refreshRmb(1);
-                                 
-                             }  
-                         });  
-            			return false;
-            		});
-            		
-            		
-            		$('#add').click(function(){
-            			$('#stuAddModal').modal({
-            				backdrop:'static'
-            			});
-            			$('#tableDiv').hide();
-            			return false;
-            		})
-            		
-            		
-            		$('#queryByCriteria').click(function(){
-            			var str = $("#myForm").serialize();//获取表单数据
-						 //发送ajax请求添加任务
-						$.ajax({
-							url:"user/stus",
-							type:"POST",
-							data:str,
-							dataType:'JSON',
 
-							success:function(result){
-								//$('#stuAddModal').modal('hide');
-								$('#tableDiv').show();
-								var $table = $("#stus");
-								
-								$table.empty();
-								
-								$table.append($("<tr class='warning'><th colspan='2'><button onclick='seletAll1()' type='button' class='btn btn-default btn-xs'>全选</button></th><th colspan='2'>名字</th></tr>"));
-								
-								
-								$.each(result, function(index,item) {
-										var $tr = $("<tr height='4px'><td colspan='2'><input type='checkbox' name='stuId' value='"+item.id+"'></td><td colspan='2'>"+item.userName+"</td></tr>")
-										$table.append($tr);
-								});
-								if(result != null && result.length != 0 ){}else{
-									$table.append("<tr><td colspan='4'>没有符合条件的用户</td></tr>");
-								}
-							}
-						}); 
-            			return false;
-            		});
-            		
-            		
-            		$('#addx').click(function(){ 
-            			$('#stuAddModal').modal('hide');
-            	
-            			var stuIds = new Array();
-            			var groupId = $('input[name="groupId"]').val();
-            			
-            			$('input:checked').each(function(index,item){
-            				stuIds[index]=$(this).val();
-	            		});
-            			var args = {'stuId':stuIds,'groupId':groupId};
-            			var url = "group/djq";
-            			$.ajax({type:'post',  
-                                traditional :true,  
-                                url:url,  
-                                data:args,
-                                success: function(){
-                                	window.location.reload();
-                                  }
-        
-            			});
-	            		return false;
-            		})
-            		
-            		
-            		
-            	})
-            
-         		function seletAll1(){
-         			$('#stus :checkbox').prop('checked',true);
-         		}
-            
+
+
+            <script src="static/js/jquery-1.12.4.min.js"></script>
+            <script src="static/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+            <script src="static/bootstrap-3.3.7-dist/js/bootstrap-datetimepicker.js"></script>
+            <script src="static/bootstrap-3.3.7-dist/js/bootstrap-datetimepicker.fr.js"></script>
+            <script type="text/javascript">
+                $(function() {
+                    //全选按钮
+                    $('#selectAll').click(function() {
+                        $(":checkbox").prop("checked", true);
+                        return false;
+                    });
+
+                    //删除按钮
+                    //<input type="hidden" value="${group.id }" name="groupId">
+                    $('#delete').click(function() {
+                        var ids = new Array();
+                        $("input:checked").each(function(index, item) {
+                            $(this).parent().parent().remove();
+                            ids[index] = $(item).val();
+                        });
+
+                        var gid = $('input[name="groupId"]').val();
+                        var url = "group/deleteStu";
+                        var args = {
+                            "stus": ids,
+                            "groupId": gid,
+                            "_method": "delete",
+                            "date": new Date()
+                        };
+                        $.ajax({
+                            type: 'post',
+                            traditional: true,
+                            url: url,
+                            data: args,
+                            success: function(data) {
+                                refreshRmb(1);
+
+                            }
+                        });
+                        return false;
+                    });
+
+
+                    $('#add').click(function() {
+                        $('#stuAddModal').modal({
+                            backdrop: 'static'
+                        });
+                        $('#tableDiv').hide();
+                        return false;
+                    })
+
+
+                    $('#queryByCriteria').click(function() {
+                        var str = $("#myForm").serialize(); //获取表单数据
+                        //发送ajax请求添加任务
+                        $.ajax({
+                            url: "user/stus",
+                            type: "POST",
+                            data: str,
+                            dataType: 'JSON',
+
+                            success: function(result) {
+                                //$('#stuAddModal').modal('hide');
+                                $('#tableDiv').show();
+                                var $table = $("#stus");
+
+                                $table.empty();
+
+                                $table.append($("<tr class='warning'><th colspan='2'><button onclick='seletAll1()' type='button' class='btn btn-default btn-xs'>全选</button></th><th colspan='2'>名字</th></tr>"));
+
+
+                                $.each(result, function(index, item) {
+                                    var $tr = $("<tr height='4px'><td colspan='2'><input type='checkbox' name='stuId' value='" + item.id + "'></td><td colspan='2'>" + item.userName + "</td></tr>")
+                                    $table.append($tr);
+                                });
+                                if (result != null && result.length != 0) {} else {
+                                    $table.append("<tr><td colspan='4'>没有符合条件的用户</td></tr>");
+                                }
+                            }
+                        });
+                        return false;
+                    });
+
+
+                    $('#addx').click(function() {
+                        $('#stuAddModal').modal('hide');
+
+                        var stuIds = new Array();
+                        var groupId = $('input[name="groupId"]').val();
+
+                        $('input:checked').each(function(index, item) {
+                            stuIds[index] = $(this).val();
+                        });
+                        var args = {
+                            'stuId': stuIds,
+                            'groupId': groupId
+                        };
+                        var url = "group/djq";
+                        $.ajax({
+                            type: 'post',
+                            traditional: true,
+                            url: url,
+                            data: args,
+                            success: function() {
+                                window.location.reload();
+                            }
+
+                        });
+                        return false;
+                    })
+
+
+
+                })
+
+                function seletAll1() {
+                    $('#stus :checkbox').prop('checked', true);
+                }
+
             </script>
-            
-            
-            
+
+
+
 
             <div class="gxb-header" id="gxb-header">
                 <div class="gxb-header-content clear-fix">
@@ -318,7 +327,7 @@ ${pageContext.request.serverPort}${pageContext.request.contextPath}/">
 
 
                             <span class="text">
-                    <span class="user-name linkPage" title="xjtu3115393007" text="UserVo(userId=1233428, userName=xjtu3115393007, name=韩翔辉, type=null, tenantId=, username=xjtu3115393007, gender=null, mobile=13140917139, email=null, groupName=null, avatar_url=https://gxbfile-gs.gaoxiaobang.com/uploads/avatar/link/4995ff94707a463cb559e15e67de8c34.png, confirmStatus=20, roleUserList=null, maxViewTime=null, learnStatus=null, schoolDepartment=null, major=null, schoolClass=null, no=null, studentList=null, openId=null, userCenterUserId=1233428)"> ${sessionScope.user.userName}</span>
+                    <span class="user-name linkPage" title="xjtu3115393007"> ${sessionScope.user.userName}</span>
                             <i class="gxb-icon-header"></i>
                             <i class="gxb-icon-shadow"></i>
                             <ul class="dropdown-nav">
@@ -336,253 +345,10 @@ ${pageContext.request.serverPort}${pageContext.request.contextPath}/">
 
                 </div>
             </div>
-            <script>
-                $(function() {
-                    var $toggle = $("#gxbUser");
-                    //判断租户id若为800，加粉笔匠
-                    if (70 == '800') {
-                        $('#gxb-header').addClass('gxb-header-teachingNew');
-                        $('#leftOld').hide();
-                        $('#leftNew').show();
-                        $('#myCourse').parent().hide();
-                    }
-                    $(document).click(function(event) {
-                        if (!$toggle.is(event.target) && ($toggle.has(event.target).length == 0)) {
-                            $(".text").removeClass("open");
-                        }
-                    });
-
-                    var goHome = function() {
-                        gotoCMS("/")
-                    };
-
-                    var goProfile = function() {
-                        gotoCMS("/#/user/user_home")
-                    };
-
-                    var goAdmin = function() {
-                        gotoCMS("/#/mgrentry")
-                    };
-
-                    var goCourse = function() {
-                        gotoCMS("/#/courses")
-                    };
-
-                    var goHelper = function() {
-                        gotoCMS("/#/helper")
-                    };
-
-                    $('.linkPage').click(function() {
-                        if (gxb.user.getZygjTenantId() == gxb.user.getTenantId()) {
-                            gotoCMS('/#/user/my_course');
-                        } else {
-                            gotoCMS("/#/user/user_home")
-                        }
-                    });
-
-                    var goBI = function() {
-                        var host = (window.location.origin || (window.location.protocol + "//" + window.location.host)).split(".");
-                        var biRootSege = [];
-                        biRootSege.push(host.slice(0, 1));
-                        biRootSege.push("dashboard");
-                        return biRootSege.join(".") + "." + host.slice(1, host.length).join(".") + "/dashboard"
-                    }
-
-
-                    var $menuItems = $(".gxb-nav-content a");
-
-                    $($menuItems.eq(0)).on("click", goHome);
-
-                    $($menuItems.eq(1)).on("click", goCourse);
-
-                    $($menuItems.eq(2)).on("click", goProfile);
-
-                    //        $($menuItems.eq(3)).on("click", goAdmin);
-
-                    $(".helpclass").on("click", goHelper);
-
-                    $("#header_logo").on("click", goHome);
-
-                    $("#myCourse").on("click", goProfile);
-
-                    if (!($(".gxb-user-info-img img").attr("src"))) {
-                        $(".gxb-user-info-img img").addClass("gxb-course-avatar");
-                    } else {
-                        $(".gxb-user-info-img img").removeClass("gxb-course-avatar");
-                    };
-
-                    $('.Admin').click(function() {
-
-                        var moduleId = 2;
-
-
-                        switch (moduleId) {
-                            case 0:
-
-                                {
-                                    window.location.href = '/class';
-                                    break;
-                                }
-                            case 1:
-                                {
-                                    window.location.href = '/class';
-                                    break;
-                                }
-                            case 2:
-                                {
-                                    if (gxb.user.getZygjTenantId() == gxb.user.getTenantId()) {
-                                        gotoCMS('/#/user/my_course');
-                                    } else {
-                                        gotoCMS("/#/user/user_home")
-                                    }
-                                    break;
-                                }
-                            case 3:
-                                {
-                                    window.location.href = goBI() + "/#/school/schoolview";
-                                    break;
-                                }
-                            case 4:
-                                {
-                                    gotoCMS("/console");
-                                    break;
-                                }
-                            case 5:
-                                {
-                                    window.location.href = '/course';
-                                    break;
-                                }
-                        }
-
-                    });
-
-                })
-                var _currentTime = 1502088489679
-
-                /**
-                 * 获取是否有选课信息
-                 */
-                $.ajax({
-                    type: "get",
-                    url: window.location.origin + '/selectiveInfo/tenant/user/api',
-                    dateType: 'json',
-                    contentType: 'application/json',
-                    success: function(res) {
-                        if (res && res.length > 0) {
-                            var time = null;
-                            for (var i = 0; i < res.length; i++) {
-                                if (!res[i].selectiveStatus) { //未选课
-                                    var dateTime = new Date(res[i].endAt)
-                                    time = {
-                                        year: dateTime.getFullYear(),
-                                        month: dateTime.getMonth() + 1,
-                                        day: dateTime.getDate(),
-                                        hour: dateTime.getHours(),
-                                        minute: dateTime.getMinutes()
-                                    }
-                                    break;
-                                }
-                            }
-
-                            function addSelectBtn_() {
-                                addSelectBtn(time)
-                            }
-                            setTimeout(addSelectBtn_, 2000)
-                        }
-                    }
-                })
-                //添加选课图标 并绑定事件
-                function addSelectBtn(time) {
-                    //选课事件
-                    var homeUrl = window.location.origin
-                    homeUrl = homeUrl.replace(".class", "");
-                    var selectCourse = function() {
-                        $("#iframe_treesea").remove();
-                        var frame = document.createElement("iframe");
-                        var casurl = 'https://cas.gaoxiaobang.com/login?tenant_id=' + '70' + '&service=';
-                        frame.id = "iframe_treesea";
-                        frame.src = casurl + homeUrl + "/iframe#/selectcourse?_source_=" + window.location.origin;
-                        frame.style.display = "block";
-                        frame.style.height = "100%";
-                        frame.style.width = "100%";
-                        frame.style.zIndex = "999";
-                        frame.style.position = "fixed";
-                        frame.style.top = "0";
-                        document.body.appendChild(frame);
-                    };
-                    //创建图标
-                    var iElement = document.createElement("span");
-                    iElement.className = 'gxb-icon-selectCourse'
-                    //        iElement.innerHTML='选课'
-                    var aElement = document.createElement("a");
-                    aElement.href = "javascript:void(0)";
-                    aElement.className = "selectcourse_";
-                    aElement.id = "selectcourse";
-                    aElement.onclick = selectCourse;
-                    aElement.appendChild(iElement);
-                    var dialogQQ = document.getElementsByClassName('dialogQQ')[0]
-                    dialogQQ.insertBefore(aElement, dialogQQ.childNodes[0])
-                    if (time) { //有选课 没有选的时候
-                        var bigger1 = document.createElement("span");
-                        var bigger2 = document.createElement("span");
-                        bigger1.className = 'bigger1'
-                        bigger2.className = 'bigger2'
-                        aElement.appendChild(bigger1);
-                        aElement.appendChild(bigger2);
-                        var tips = document.createElement("div");
-                        tips.innerHTML = '<dl >' +
-                            '<dd class="title_">选课开放</dd>' +
-                            '<dd class="time_">' + time.year + '年' + time.month + '月' + time.day + '日' + time.hour + ':' + time.minute + '截止，不要错过哦！</dd>' +
-                            '</dl>' +
-                            '<em class="close_"></em>';
-
-                        tips.className = 'tips move'
-                        tips.id = 'select_tips'
-                        tips.lastChild.onclick = function() {
-                            tips.className += '  hide'
-                            tips.parentNode.removeChild(tips);
-                        }
-                        dialogQQ.appendChild(tips)
-                    }
-                    // 事件监听
-                    var eventMethod = window.addEventListener ? "addEventListener" : "attachEvent";
-                    var eventer = window[eventMethod];
-                    var messageEvent = eventMethod == "attachEvent" ? "onmessage" : "message";
-                    eventer(messageEvent, function(e) {
-                        // Check if origin is proper
-                        if (e.origin != homeUrl) {
-                            return
-                        }
-                        if (e.data.close) {
-                            $("#iframe_treesea").remove();
-                        }
-                        if (e.data.url) {
-                            // gotoCMS(e.data.url);
-                            window.open(homeUrl + e.data.url)
-                        }
-                    }, false);
-                }
-
-            </script>
-
-
-
-
-
-
-
-
 
 
             <input type="hidden" id="module_name" value="announcement">
             <div class="gxb-body gxb-ltcr clear-fix" style="min-height: 691px;">
-
-
-
-
-
-
-
 
 
 
@@ -598,14 +364,6 @@ ${pageContext.request.serverPort}${pageContext.request.contextPath}/">
             开课时间:2017-11-25 08:00
         </span>
                     </div>
-
-
-
-
-
-
-
-
 
 
                     <div class="menu-wrap" id="stuMenu">
@@ -774,11 +532,6 @@ ${pageContext.request.serverPort}${pageContext.request.contextPath}/">
                 <div class="gxb-right">
 
 
-                    <!--<div class="gxb-next" id="lastSchedule" style="padding: 0; height: auto;"> <div class="new-top">  <span class="gxb-label"> 最近学习 </span> <span class="gxb-info" title="作业：简单选择排序_取最小值"> 作业：简单选择排序_取最小值 </span> <a id="learn-next" class="gxb-btn gxb-btn-menu " unit_id="20146" context_id="161538" context_type="chapter" school_id="69" class_id="2858" redirect_uri="/classes/2858#/assignments/161538/view" cansubmitquiz="0" submissionid="1920988" href="javascript:void(0)"> 继续学习 </a>  </div> <div class="next-progress"> <ul class="clear-fix"> <li class="clear-fix current" style="width: 315.333px;"> <i class="icons">  <i class="icon-start"></i> </i> <div class="content"> <p class="name">课程开始</p> <p class="time">2015-11-25 08:00</p> </div> <i class="jiao-green"></i> </li>  <li class="clear-fix current" style="width: 315.333px;"> <i class="icons">  <i class="icon-end"></i> </i> <div class="content"> <p class="name">结课时间</p> <p class="time">2016-02-29 23:59</p> </div> <i class="jiao-green"></i> <i class="jiao-white"></i> </li> <li class="clear-fix current" style="width: 315.333px;"> <i class="icons">  <i class="icon-publish"></i> </i> <div class="content"> <p class="name">公布成绩</p> <p class="time">2016-03-03 23:59</p> </div> <i class="jiao-white"></i> </li> </ul> </div></div>-->
-
-
-
-
                     <script>
                         seajs.use(["controller/student/next"], function(ctrl) {
                             $(function() {
@@ -843,19 +596,19 @@ ${pageContext.request.serverPort}${pageContext.request.contextPath}/">
                             </div>
                         </div>
                         <div class="gxb-content" ng-show="menu==2">
-                            
+
                             <form>
-<!--
+                                <!--
                                 <input type="hidden" value="${group.id }" name="groupId">
                                 <input type="hidden" value="delete" name="_method">
 -->
                                 <div>
-                                    <button class="stubtn btn btn-info" id="add" >查询</button>
+                                    <button class="stubtn btn btn-info" id="add">查询</button>
                                     <button class="stubtn btn btn-info" id="delete">删除</button>
                                     <button class="stubtn btn btn-info" id="selectAll">全选</button>
                                 </div>
                                 <table class="stutable table table-condensed">
-                                    <tr >
+                                    <tr>
                                         <th colspan="2">id</th>
                                         <th colspan="2">名字</th>
                                         <th colspan="2">年龄</th>
@@ -875,55 +628,55 @@ ${pageContext.request.serverPort}${pageContext.request.contextPath}/">
                                 </table>
                             </form>
 
-<!-- 添加群组成员模态框 -->
-<div class="modal fade" id="stuAddModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog " role="document">
-    <div class="modal-content">
-      
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">添加学生</h4>
-      </div>
-      
-      
-     <div class="modal-body">
-		 <form class="form-horizontal" id="myForm">
-			 <input type="hidden" name="groupId" value="${group.id }">
-			  <div class="form-group">
-			    <label class="col-sm-2 control-label">查询条件</label>
-					   <div class="col-sm-6">
-							 <input type="text" class="form-control" name="criteria">
-						</div>
-						 <div class="col-sm-2">
-							<button type="button" id='queryByCriteria' class="btn btn-default">查询</button>
-						</div>
-						
-			  </div>
-			  
-			  
-			   <div class="form-group" id ="tableDiv">
-			    <label class="col-sm-2 control-label">学生列表</label>
-					   <div class="checkbox col-sm-10" style="300px;overflow: auto;">
-					   		<table class="table table-condensed" id ="stus" ></table>
-						</div>
-			  </div>
-			 
-		</form>
-      </div>
-      
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-        <button type="button" class="btn btn-primary" id="addx" >添加</button>
-      </div>
-      
-    </div>
-  </div>
-</div>
+                            <!-- 添加群组成员模态框 -->
+                            <div class="modal fade" id="stuAddModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                                <div class="modal-dialog " role="document">
+                                    <div class="modal-content">
+
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                            <h4 class="modal-title" id="myModalLabel">添加学生</h4>
+                                        </div>
+
+
+                                        <div class="modal-body">
+                                            <form class="form-horizontal" id="myForm">
+                                                <input type="hidden" name="groupId" value="${group.id }">
+                                                <div class="form-group">
+                                                    <label class="col-sm-2 control-label">查询条件</label>
+                                                    <div class="col-sm-6">
+                                                        <input type="text" class="form-control" name="criteria">
+                                                    </div>
+                                                    <div class="col-sm-2">
+                                                        <button type="button" id='queryByCriteria' class="btn btn-default">查询</button>
+                                                    </div>
+
+                                                </div>
+
+
+                                                <div class="form-group" id="tableDiv">
+                                                    <label class="col-sm-2 control-label">学生列表</label>
+                                                    <div class="checkbox col-sm-10" style="300px;overflow: auto;">
+                                                        <table class="table table-condensed" id="stus"></table>
+                                                    </div>
+                                                </div>
+
+                                            </form>
+                                        </div>
+
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                                            <button type="button" class="btn btn-primary" id="addx">添加</button>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
 
 
 
 
-<!--
+                            <!--
                             <form action="user/stus" method="post">
                                 请输入要查询的条件:
                                 <input type="text" name="criteria">
@@ -949,82 +702,18 @@ ${pageContext.request.serverPort}${pageContext.request.contextPath}/">
                         </div>
                         <div class="gxb-content" ng-show="menu==6">
                         </div>
-                        <script>
-                            var announceList = [{
-                                "editorId": "",
-                                "contextType": "Course",
-                                "contextId": "2858",
-                                "detail": "<p>&nbsp; &nbsp; &nbsp; 考虑到本门课程作业量很大，特将作业截止时间延长至2016年2月29日，未在截止日期完整的作业部分将按零处理，请同学们按时完成任务。</p>",
-                                "id": "918",
-                                "position": "",
-                                "time": "2016-01-14 18:34",
-                                "permalink": "",
-                                "title": "作业延迟工作",
-                                "userId": "1173690",
-                                "status": ""
-                            }, {
-                                "editorId": "",
-                                "contextType": "Course",
-                                "contextId": "2858",
-                                "detail": "<p>1. 在线答疑：平台讨论区</p><p>&nbsp;&nbsp;&nbsp;&nbsp; 在线问答路径：在讨论区提出问题；</p><p>&nbsp;&nbsp;&nbsp;&nbsp; 在线答疑时间：10:00-18:00</p><p>&nbsp;</p><p>2. 邮件答疑：</p><p>&nbsp;&nbsp;&nbsp;&nbsp; 邮箱地址：clli@uniquedu.com</p><p>&nbsp;&nbsp;&nbsp;&nbsp; 邮件答疑时间：10:00-18:00</p><p>&nbsp;&nbsp;&nbsp;&nbsp; 应答时间段：10:00-18:00发邮件，30分钟内回复，非工作时间24小时内回复</p><p>&nbsp;</p><p>3.电话答疑：</p><p>&nbsp;&nbsp;&nbsp;&nbsp; 专线电话：010-58472957</p><p>&nbsp;&nbsp;&nbsp;&nbsp; 电话答疑时间段：10:00-18:00</p><p>&nbsp;&nbsp;&nbsp;&nbsp; 应答时间段：10:00-18:00电话即时解答</p><p>&nbsp;</p><p>备注：此课程节假日不提供辅导答疑，以上只针对工作日。</p>",
-                                "id": "615",
-                                "position": "",
-                                "time": "2015-11-23 16:25",
-                                "permalink": "",
-                                "title": "二、辅导答疑方式",
-                                "userId": "1173690",
-                                "status": ""
-                            }, {
-                                "editorId": "",
-                                "contextType": "Course",
-                                "contextId": "2858",
-                                "detail": "<p>大家好，我是《编程算法基础》课程的导学老师。该课程将于11月25日（周三）上午8点为大家准时开课，课程的截止时间是1月22日（周五）。在学习过程中同学们除了要观看每一章课程视频外，还需要注意每一章下方需要大家完成的作业（讨论、作业、测验统称为作业），大家要知道提交作业的截止时间，不要错过，错过的话系统将不再接收，这部分的成绩将会为0。以上是大家学习此门课程需要注意的地方，祝大家取得好成绩；<br></p>",
-                                "id": "614",
-                                "position": "",
-                                "time": "2015-11-23 16:25",
-                                "permalink": "",
-                                "title": "一、学前必读",
-                                "userId": "1173690",
-                                "status": ""
-                            }, {
-                                "contextType": "Course",
-                                "contextId": "2858",
-                                "detail": "<p>亲爱的同学们,你们好!</p><p style=\"text-indent:2em\">从今天开始，我们将和您一起开始《编程算法基础【西安交大-XJ15Y1班】》的课程学习了，我们将带您感受《编程算法基础【西安交大-XJ15Y1班】》的美丽，进《编程算法基础【西安交大-XJ15Y1班】》领域的殿堂。\n</p><p>课程简介:</p><p style=\"text-indent:2em\"> 《编程算法基础》课程通过循序渐进的方式剖析各种常见编程任务的求解思路和基本算法，使初学者快速地学习到常见逻辑、算法的运作原理，掌握基本编程技巧，为后续课程学习打下坚实基础。\r\n\r\n       本课程通过大量示范，在启发思维、开拓视野的同时，有意识地去逐渐综合运用多种算法和设计理念，为初学者开辟一条通往较熟练编程的具体道路。</p><p>注意事项:</p><p style=\"text-indent:2em\">该课程以网络MOOC形式进行授课、包括视频、作业、讨论、测验等教学环节，学员应本人独立完成教学内容，严禁抄袭、他人代答等行为。\n</p><p>欢迎您的加入,祝学习进步</p><p>《编程算法基础【西安交大-XJ15Y1班】》教学团队</p>",
-                                "time": "2015-11-23 14:06",
-                                "title": "致所有加入该课程的同学"
-                            }];
-                            var classinfo = {
-                                "classId": "2858",
-                                "concludeAt": "2016-02-29 23:59",
-                                "className": "编程算法基础【西安交大-XJ15Y1班】",
-                                "teachMode": "10",
-                                "type": "Class",
-                                "startAt": "2015-11-25 08:00"
-                            };
-
-                            seajs.use(["controller/student/announce"], function(ctrl) {
-                                $(function() {
-                                    ctrl.buildAnnouncement('unit-announcement', classinfo);
-                                    ctrl.buildAnnounce('announceList', announceList);
-
-                                });
-                            });
-
-                        </script>
-
-
 
                         <div class="gxb-sidebar" style="margin-top: 20px;">
                             <div class="gxb-sidebar-list expiring">
                                 <h3>任务列表</h3>
                                 <ul>
                                     <c:forEach items="${groupTasks}" var="mapTask">
-											<c:if test="${mapTask.key == group.id}">
-												<c:forEach items="${mapTask.value}" var="task">
-													<li>*${task.taskName}</li>
-												</c:forEach>
-											</c:if>
-									</c:forEach>
+                                        <c:if test="${mapTask.key == group.id}">
+                                            <c:forEach items="${mapTask.value}" var="task">
+                                                <li>*${task.taskName}</li>
+                                            </c:forEach>
+                                        </c:if>
+                                    </c:forEach>
                                 </ul>
                             </div>
 

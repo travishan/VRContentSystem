@@ -99,22 +99,20 @@ ${pageContext.request.serverPort}${pageContext.request.contextPath}/">
                 });
 
                 $("#addTaskBtn").click(function() {
-                var str = $("#myForm").serialize();
-                alert(str);
-                //发送ajax请求添加任务
-                $.ajax({
-                    url: "task",
-                    type: "POST",
-                    data: str,
-                    success: function(result) {
-                        console.log(result);
-                        $('#taskAddModal').modal('hide');
-                        location.reload(true);
-                    }
+                    var str = $("#myForm").serialize();
+                    alert(str);
+                    //发送ajax请求添加任务
+                    $.ajax({
+                        url: "task",
+                        type: "POST",
+                        data: str,
+                        success: function(result) {
+                            console.log(result);
+                            $('#taskAddModal').modal('hide');
+                            location.reload(true);
+                        }
+                    });
                 });
-                })
-
-                })
 
             </script>
 
@@ -649,17 +647,19 @@ ${pageContext.request.serverPort}${pageContext.request.contextPath}/">
                         <div class="ng-binding ng-scope">
                             <div class="user">
                                 <div class="w1200">
-                                    <div class="setting" ispart="true" part-data="ewoJImFwaVVybCI6Ii91c2VyL2FwaSIsCgkid2ViUGFydElkIjoiZ3hibWVudXMiLAoJImRhdGFNYXBwZXIiOlt7CgkJImRhdGFFbGUiOiJzdGF0dXMiLAoJCSJtb2RlbEZpZWxkIjoic3RhdHVzIgoJfSx7CgkJImRhdGFFbGUiOiJtZXNzYWdlIiwKCQkibW9kZWxGaWVsZCI6Im1lc3NhZ2UiCgl9LHsKCQkiZGF0YUVsZSI6ImNyZWF0ZWRBdCIsCgkJIm1vZGVsRmllbGQiOiJkYXRhLmNyZWF0ZWRBdCIKCX0sewoJCSJkYXRhRWxlIjoidXBkYXRlZEF0IiwKCQkibW9kZWxGaWVsZCI6ImRhdGEudXBkYXRlZEF0IgoJfSx7CgkJImRhdGFFbGUiOiJ1c2VySWQiLAoJCSJtb2RlbEZpZWxkIjoiZGF0YS51c2VySWQiCgl9LHsKCQkiZGF0YUVsZSI6InVzZXJuYW1lIiwKCQkibW9kZWxGaWVsZCI6ImRhdGEudXNlcm5hbWUiCgl9LHsKCQkiZGF0YUVsZSI6Im5hbWUiLAoJCSJtb2RlbEZpZWxkIjoiZGF0YS5uYW1lIgoJfSx7CgkJImRhdGFFbGUiOiJnZW5kZXIiLAoJCSJtb2RlbEZpZWxkIjoiZGF0YS5nZW5kZXIiCgl9LHsKCQkiZGF0YUVsZSI6ImVtYWlsIiwKCQkibW9kZWxGaWVsZCI6ImRhdGEuZW1haWwiCgl9LHsKCQkiZGF0YUVsZSI6ImNvbmZpcm1TdGF0dXMiLAoJCSJtb2RlbEZpZWxkIjoiZGF0YS5jb25maXJtU3RhdHVzIgoJfSx7CgkJImRhdGFFbGUiOiJzdGF0dXMiLAoJCSJtb2RlbEZpZWxkIjoiZGF0YS5zdGF0dXMiCgl9LHsKCQkiZGF0YUVsZSI6InV1aWQiLAoJCSJtb2RlbEZpZWxkIjoiZGF0YS51dWlkIgoJfSx7CgkJImRhdGFFbGUiOiJhdmF0YXJVcmwiLAoJCSJtb2RlbEZpZWxkIjoiZGF0YS5hdmF0YXJVcmwiCgl9XQp9" style="height: 1200px;">
-                                        <div class="setting" data-key="webpart_383428" data-api="/user/api" data-mapper="W3siZGF0YUVsZSI6InN0YXR1cyIsIm1vZGVsRmllbGQiOiJzdGF0dXMifSx7ImRhdGFFbGUiOiJtZXNzYWdlIiwibW9kZWxGaWVsZCI6Im1lc3NhZ2UifSx7ImRhdGFFbGUiOiJjcmVhdGVkQXQiLCJtb2RlbEZpZWxkIjoiZGF0YS5jcmVhdGVkQXQifSx7ImRhdGFFbGUiOiJ1cGRhdGVkQXQiLCJtb2RlbEZpZWxkIjoiZGF0YS51cGRhdGVkQXQifSx7ImRhdGFFbGUiOiJ1c2VySWQiLCJtb2RlbEZpZWxkIjoiZGF0YS51c2VySWQifSx7ImRhdGFFbGUiOiJ1c2VybmFtZSIsIm1vZGVsRmllbGQiOiJkYXRhLnVzZXJuYW1lIn0seyJkYXRhRWxlIjoibmFtZSIsIm1vZGVsRmllbGQiOiJkYXRhLm5hbWUifSx7ImRhdGFFbGUiOiJnZW5kZXIiLCJtb2RlbEZpZWxkIjoiZGF0YS5nZW5kZXIifSx7ImRhdGFFbGUiOiJlbWFpbCIsIm1vZGVsRmllbGQiOiJkYXRhLmVtYWlsIn0seyJkYXRhRWxlIjoiY29uZmlybVN0YXR1cyIsIm1vZGVsRmllbGQiOiJkYXRhLmNvbmZpcm1TdGF0dXMifSx7ImRhdGFFbGUiOiJzdGF0dXMiLCJtb2RlbEZpZWxkIjoiZGF0YS5zdGF0dXMifSx7ImRhdGFFbGUiOiJ1dWlkIiwibW9kZWxGaWVsZCI6ImRhdGEudXVpZCJ9LHsiZGF0YUVsZSI6ImF2YXRhclVybCIsIm1vZGVsRmllbGQiOiJkYXRhLmF2YXRhclVybCJ9XQ==" style="height: 1200px;">
+                                    <div class="setting" ispart="true" style="height: 1200px;">
+                                        <div class="setting" data-key="webpart_383428" data-api="/user/api" style="height: 1200px;">
                                             <dl>
                                                 <dt>
-            <!-- ngIf: datastr.avatarUrl --><img ng-if="datastr.avatarUrl" ng-src="https://gxbfile-gs.gaoxiaobang.comnull" alt="" class="ng-scope" src="https://gxbfile-gs.gaoxiaobang.comnull/"><!-- end ngIf: datastr.avatarUrl -->
+            <!-- ngIf: datastr.avatarUrl -->
+<!--                                                    <img ng-if="datastr.avatarUrl" ng-src="https://gxbfile-gs.gaoxiaobang.comnull" alt="" class="ng-scope" src="https://gxbfile-gs.gaoxiaobang.comnull/">'-->
+                                                    <!-- end ngIf: datastr.avatarUrl -->
             <!-- ngIf: !datastr.avatarUrl -->
         </dt>
                                                 <dd class="ng-binding">
                                                     ${sessionScope.user.userName}
                                                 </dd>
-                                                <span ng-click="authBomb(datastr.studentList)" ng-class="{&#39;auth&#39;:datastr.studentList,&#39;notAuth&#39;:!datastr.studentList}" class="auth"></span>
+                                                <span class="auth"></span>
                                             </dl>
                                             <ul>
                                                 <li ng-hide="showZygj" ng-class="{true:&#39;current&#39;,false:&#39;&#39;}[tab==1]" ui-sref=".user_home" ng-click="add_class_home();tab=1" href="#/user/user_home" class="current">我的群组</li>
@@ -679,7 +679,8 @@ ${pageContext.request.serverPort}${pageContext.request.contextPath}/">
                                                             <li ng-class="{true:&#39;current&#39;,false:&#39;&#39;}[menu==1]" ng-click="menu=1" class="current">全部群组</li>
                                                             <li ng-class="{true:&#39;current&#39;,false:&#39;&#39;}[menu==2]" ng-click="menu=2">创建群组</li>
                                                             <li ng-class="{true:&#39;current&#39;,false:&#39;&#39;}[menu==3]" ng-click="menu=3">我的库存</li>
-                                                            <li data-toggle="modal" data-target="#taskAddModal" ng-class="{true:&#39;current&#39;,false:&#39;&#39;}[menu==5]" ng-click="menu=5">发布任务</li>
+                                                            <!--                                                            <li data-toggle="modal" data-target="#taskAddModal" ng-class="{true:&#39;current&#39;,false:&#39;&#39;}[menu==5]" ng-click="menu=5">发布任务</li>-->
+                                                            <li ng-class="{true:&#39;current&#39;,false:&#39;&#39;}[menu==5]" ng-click="menu=5">发布任务</li>
 
                                                         </ul>
                                                     </div>
@@ -789,7 +790,7 @@ ${pageContext.request.serverPort}${pageContext.request.contextPath}/">
                                                 </div>
                                             </div>
                                             <div ng-show="menu==2" style="width:60%;height:60%;margin-top:24px;margin-left:24px;">
-<!--
+                                                <!--
                                                 <script>
                                                     function getFileUrl(sourceId) {
                                                         var url;
@@ -848,11 +849,16 @@ ${pageContext.request.serverPort}${pageContext.request.contextPath}/">
 
                                                 </center>
                                             </div>
-                                            <div class="ng-scope" ng-show="menu==5">
-                                                <center>
+                                            <div class="ng-scope" ng-show="menu==5" style="margin-left:50px">
+                                                
+                                                <div class="form-div">
                                                     <form class="form-horizontal" id="myForm">
                                                         <div class="form-group">
-                                                            <label class="col-sm-2 control-label">开始时间</label>
+                                                            <label class="col-md-2 control-label">设置任务</label>
+                                                        </div>
+                                                        <div class="form-group">
+
+                                                            <label class="col-md-2 control-label">开始时间</label>
 
                                                             <div class="input-group date form_date col-md-5" data-date-format="yyyy-mm-dd" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
                                                                 <input class="form-control" name="startTime" type="text" value="" readonly>
@@ -864,29 +870,26 @@ ${pageContext.request.serverPort}${pageContext.request.contextPath}/">
                                                         <div class="form-group">
                                                             <label class="col-md-2 control-label">结束时间</label>
 
-                                                            <div class="input-group date form_date col-md-3" data-date="" data-date-format="yyyy-mm-dd" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
-                                                                <input class="form-control" name="endTime" size="16" type="text" value="" readonly>
-                                                                <span class="input-group-addon" style="width:0px;height:0px;display:block;"><span class=" glyphicon-remove"></span></span>
-                                                                <span class="input-group-addon" style="width:0px;height:0px;display:none;"><span class=" glyphicon-calendar"></span></span>
+                                                            <div class="input-group date form_date col-md-5" data-date-format="yyyy-mm-dd" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+                                                                <input class="form-control" name="startTime" type="text" value="" readonly>
+                                                                <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+                                                                <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
                                                             </div>
                                                         </div>
-
-
 
                                                         <div class="form-group">
                                                             <label class="col-sm-2 control-label">群组列表</label>
                                                             <label class="col-sm-10 control-label">&nbsp;</label>
                                                             <c:forEach items="${sessionScope.groups}" var="group">
                                                                 <div class="checkbox col-sm-6">
-                                                                    <label>
-                                                                                <input type="checkbox" name="groupId" id="group_input_checkbox" value="${group.id }" >${group.groupName }
-                                                                              </label>
+                                                                    <label><input type="checkbox" name="groupId" id="group_input_checkbox" value="${group.id }" >${group.groupName}</label>
                                                                 </div>
                                                             </c:forEach>
                                                         </div>
 
                                                     </form>
-                                                </center>
+                                                </div>
+
                                             </div>
                                         </div>
                                     </div>
@@ -1035,7 +1038,7 @@ ${pageContext.request.serverPort}${pageContext.request.contextPath}/">
         <i class="gxb-icon-toProblem"></i>
     </a>
                 </div>
-<!--
+                <!--
                 <script>
                     if (window.location.href.indexOf("teacher.") >= 0) {
                         $(".getMobile").hide();
@@ -1269,44 +1272,46 @@ ${pageContext.request.serverPort}${pageContext.request.contextPath}/">
                             <div class="modal-body">
                                 <form class="form-horizontal" id="myForm">
                                     <div class="form-group">
-                                        <label class="col-sm-2 control-label">任务名称</label>
+                                        <label class="col-md-2 control-label">任务名称</label>
                                         <div class="col-sm-10">
                                             <input type="text" class="form-control" name="taskName" id="taskNameInput" placeholder="学习Py基础语法">
                                         </div>
                                     </div>
 
                                     <div class="form-group">
-                                        <label class="col-sm-2 control-label">任务描述</label>
+                                        <label class="col-md-2 control-label">任务描述</label>
                                         <div class="col-sm-10">
                                             <textarea class="form-control" name="taskDesc" id="taskDescInput"></textarea>
                                         </div>
                                     </div>
 
-                                    <div class="form-group">
-                                        <label class="col-sm-2 control-label">开始时间</label>
 
-                                        <div class="input-group date form_date col-sm-6" data-date-format="yyyy-mm-dd" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+                                    <div class="form-group">
+                                        <label class="col-md-2 control-label">开始时间</label>
+
+                                        <div class="input-group date form_date col-md-5" data-date-format="yyyy-mm-dd" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
                                             <input class="form-control" name="startTime" type="text" value="" readonly>
-                                            <span class="input-group-addon" style="width:40px;height:35px;display:block;"><span class=" glyphicon-remove"></span></span>
-                                            <span class="input-group-addon" style="width:40px;height:35px;display:none;"><span class=" glyphicon-calendar"></span></span>
+                                            <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+                                            <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
                                         </div>
                                     </div>
 
                                     <div class="form-group">
                                         <label class="col-md-2 control-label">结束时间</label>
 
-                                        <div class="input-group date form_date col-md-3" data-date="" data-date-format="yyyy-mm-dd" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+                                        <div class="input-group date form_date col-md-5" data-date="" data-date-format="yyyy-mm-dd" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
                                             <input class="form-control" name="endTime" size="16" type="text" value="" readonly>
-                                            <span class="input-group-addon" style="width:0px;height:0px;display:block;"><span class=" glyphicon-remove"></span></span>
-                                            <span class="input-group-addon" style="width:0px;height:0px;display:none;"><span class=" glyphicon-calendar"></span></span>
+                                            <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+                                            <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
                                         </div>
                                     </div>
 
 
 
+
                                     <div class="form-group">
-                                        <label class="col-sm-2 control-label">群组列表</label>
-                                        <label class="col-sm-10 control-label">&nbsp;</label>
+                                        <label class="col-md-2 control-label">群组列表</label>
+                                        <label class="col-md-10 control-label">&nbsp;</label>
                                         <c:forEach items="${sessionScope.groups}" var="group">
                                             <div class="checkbox col-sm-6">
                                                 <label>
