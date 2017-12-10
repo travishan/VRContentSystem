@@ -590,7 +590,7 @@ ${pageContext.request.serverPort}${pageContext.request.contextPath}/">
                                     <h2><em class="gxb-read-status gxb-hide">未读</em><span>一、学前必读</span></h2>
                                     <div class="update-time">发布日期：2015-11-23 16:25</div>
                                     <div class="announcement-content">
-                                        <p>大家好，我是《编程算法基础》课程的导学老师。该课程将于11月25日（周三）上午8点为大家准时开课，课程的截止时间是1月22日（周五）。在学习过程中同学们除了要观看每一章课程视频外，还需要注意每一章下方需要大家完成的作业（讨论、作业、测验统称为作业），大家要知道提交作业的截止时间，不要错过，错过的话系统将不再接收，这部分的成绩将会为0。以上是大家学习此门课程需要注意的地方，祝大家取得好成绩；<br></p> <br> </div> <i class="open-close-status open-close"></i> </div>
+                                        <p>大家好， 我是《编程算法基础》课程的导学老师。该课程将于11月25日（周三）上午8点为大家准时开课，课程的截止时间是1月22日（周五）。在学习过程中同学们除了要观看每一章课程视频外，还需要注意每一章下方需要大家完成的作业（讨论、作业、测验统称为作业），大家要知道提交作业的截止时间，不要错过，错过的话系统将不再接收，这部分的成绩将会为0。以上是大家学习此门课程需要注意的地方，祝大家取得好成绩；<br></p> <br> </div> <i class="open-close-status open-close"></i> </div>
                                 <div class="announcement-unit">
                                     <h2><em class="gxb-read-status gxb-hide">未读</em><span>致所有加入该课程的同学</span></h2>
                                     <div class="update-time">发布日期：2015-11-23 14:06</div>
