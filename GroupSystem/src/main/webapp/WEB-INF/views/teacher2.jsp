@@ -9,7 +9,7 @@
             <base href="${pageContext.request.scheme}://${pageContext.request.serverName}:
 ${pageContext.request.serverPort}${pageContext.request.contextPath}/">
             <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-            <title>学习管理系统-高校邦`1`nn</title>  
+            <title>学习管理系统-高校邦`1`nn</title>
 
             <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome">
 
@@ -31,17 +31,18 @@ ${pageContext.request.serverPort}${pageContext.request.contextPath}/">
             <link rel="stylesheet" type="text/css" href="css/gxb.min.css">
             <link rel="stylesheet" type="text/css" href="css/plugin.min.css">
             <link rel="stylesheet" type="text/css" href="css/stu.css">
-            
+
 
 
 
             <script src="http://cdn.static.runoob.com/libs/angular.js/1.4.6/angular.min.js"></script>
-<!--
+
+            <!--
             <script src="js1/hm.js"></script>
             <script src="js1/lib.min.js" id="seajsnode"></script>
             <script src="js1/core.min.js"></script>
 -->
-<!--
+            <!--
             <script>
                 var version = "170518"
                 window.UEDITOR_HOME_URL = "https://xjtu.class.gaoxiaobang.com:443/js/uedit/";
@@ -111,8 +112,8 @@ ${pageContext.request.serverPort}${pageContext.request.contextPath}/">
 
             </script>
 -->
-<!--            <script src="js1/gxb_log.js"></script>-->
-<!--
+            <!--            <script src="js1/gxb_log.js"></script>-->
+            <!--
             <script>
                 var _hmt = _hmt || [];
                 (function() {
@@ -124,7 +125,7 @@ ${pageContext.request.serverPort}${pageContext.request.contextPath}/">
 
             </script>
 -->
-<!--
+            <!--
             <script charset="utf-8" async="" src="js1/nav.js"></script>
             <script charset="utf-8" async="" src="js1/next.js"></script>
             <script charset="utf-8" async="" src="js1/announce.js"></script>
@@ -158,32 +159,30 @@ ${pageContext.request.serverPort}${pageContext.request.contextPath}/">
                 }
 
             </style>
-            
+
 
         </head>
 
         <body ng-app="myApp" ng-controller="mainCtrl" style="background-color:#fbf8f8">
 
             <script>
-                var app = angular.module("myApp", []); app.controller("mainCtrl", function($scope) { $scope.menu = 1; });
+                var app = angular.module("myApp", []);
+                app.controller("mainCtrl", function($scope) {
+                    $scope.menu = 1;
+                });
 
             </script>
 
-            
+
             <script src="static/js/jquery-1.12.4.min.js"></script>
+            <script src="js/papaparse.js"></script>
             <script src="static/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
             <script src="static/bootstrap-3.3.7-dist/js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
             <script src="static/bootstrap-3.3.7-dist/js/bootstrap-datetimepicker.zh-CN.js" charset="UTF-8"></script>
             <script type="text/javascript">
                 $(function() {
-                    
-                    
-                   
-                    
-                    if(navigateIndex == 3){
-                        
-                    }
-                    
+
+
                     //全选按钮
                     $('#selectAll').click(function() {
                         $(":checkbox").prop("checked", true);
@@ -623,6 +622,7 @@ ${pageContext.request.serverPort}${pageContext.request.contextPath}/">
                                     <button class="stubtn btn btn-info" id="add">查询</button>
                                     <button class="stubtn btn btn-info" id="delete">删除</button>
                                     <button class="stubtn btn btn-info" id="selectAll">全选</button>
+                                    <button class="stubtn btn btn-info" id="addMore" data-toggle="modal" data-target="#addMoreModal">批量添加</button>
                                 </div>
                                 <table class="stutable table table-condensed">
                                     <tr>
@@ -644,6 +644,58 @@ ${pageContext.request.serverPort}${pageContext.request.contextPath}/">
                                     </c:forEach>
                                 </table>
                             </form>
+
+                            <!-- 批量添加模态框（Modal） -->
+                            <div class="modal fade" id="addMoreModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                            <h4 class="modal-title" id="myModalLabel">批量添加学生</h4>
+                                        </div>
+                                        <div class="form-group" style="margin-left: 20px">
+                                            <label for="inputfile">导入学生文件(*.csv)</label>
+                                            <input type="file" id="inputfile" onchange="loadFile()">
+                                        </div>
+                                        
+                                        <div class="form-group" id="student_list"  style="margin-left: 20px;width:50%">
+                                            <ul id="student_list_ul" class="list-group">
+                                                
+                                            </ul>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                                            <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="submitFile()">提交</button>
+                                        </div>
+                                    </div>
+                                    <!-- /.modal-content -->
+                                </div>
+                                <!-- /.modal -->
+                            </div>
+
+                            <script>
+                                function loadFile() {
+                                    var file = $('#inputfile')[0].files[0];
+                                    Papa.parse(file, {
+                                        complete: function(results) {
+                                            console.log("Finished:", results.data);
+                                            
+                                            for(var i = 0; i <= results.data.length; i++){
+                                                var d = results.data[i];
+                                                $("#student_list_ul").append("<li class='list-group-item'>" + d[0] + "   " + d[1] + "    " + d[2] + "</li>");
+                                            }
+                                            
+                                        }
+                                    });
+                                    
+                                    
+                                }
+                                
+                                function submitFile(){
+                                    
+                                }
+
+                            </script>
 
                             <!-- 添加群组成员模态框 -->
                             <div class="modal fade" id="stuAddModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -712,10 +764,10 @@ ${pageContext.request.serverPort}${pageContext.request.contextPath}/">
                             </form>
                         </div>
                         <div class="gxb-content" ng-show="menu==3">
-                            
+
                             <div style="margin-left: 20px;margin-top: 20px;margin-right: 20px">
                                 <ul class="list-group">
-                                    <li class="list-group-item" style="height: 80px;margin-bottom: 10px;background-color: #f3f3f3;border: none" >
+                                    <li class="list-group-item" style="height: 80px;margin-bottom: 10px;background-color: #f3f3f3;border: none">
                                         <div style="position: absolute;left: 10px;top: 5px">
                                             <img src="../../../images/50.jpg" /> <span> </span> <a>张三</a>
                                         </div>
@@ -803,7 +855,7 @@ ${pageContext.request.serverPort}${pageContext.request.contextPath}/">
                                             <a>9:29</a>
                                         </div>
                                     </li>
-                                    
+
                                 </ul>
 
                             </div>
@@ -1515,7 +1567,7 @@ ${pageContext.request.serverPort}${pageContext.request.contextPath}/">
         <i class="gxb-icon-toTop" style="display: none"></i>
     </a>
             </div>
-<!--
+            <!--
             <script>
                 $(function() {
                     if (typeof formhandler != "undefined") {
