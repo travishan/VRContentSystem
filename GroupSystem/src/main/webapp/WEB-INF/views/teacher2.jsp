@@ -9,7 +9,7 @@
             <base href="${pageContext.request.scheme}://${pageContext.request.serverName}:
 ${pageContext.request.serverPort}${pageContext.request.contextPath}/">
             <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-            <title>学习管理系统-高校邦nn</title>  
+            <title>学习管理系统-高校邦`1`nn</title>  
 
             <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome">
 
