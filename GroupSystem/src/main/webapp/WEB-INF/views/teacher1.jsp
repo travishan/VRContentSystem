@@ -96,21 +96,21 @@ ${pageContext.request.serverPort}${pageContext.request.contextPath}/">
                         minView: 2,
                         forceParse: 0
                     });
-                });
 
-                $("#addTaskBtn").click(function() {
-                    var str = $("#myForm").serialize();
-                    alert(str);
-                    //发送ajax请求添加任务
-                    $.ajax({
-                        url: "task",
-                        type: "POST",
-                        data: str,
-                        success: function(result) {
-                            console.log(result);
-                            $('#taskAddModal').modal('hide');
-                            location.reload(true);
-                        }
+                    $("#addTaskBtn").click(function() {
+                        var str = $("#myForm").serialize();
+                        alert(str);
+                        //发送ajax请求添加任务
+                        $.ajax({
+                            url: "task",
+                            type: "POST",
+                            data: str,
+                            success: function(result) {
+                                console.log(result);
+//                                $('#taskAddModal').modal('hide');
+                                location.reload(true);
+                            }
+                        });
                     });
                 });
 
@@ -850,7 +850,7 @@ ${pageContext.request.serverPort}${pageContext.request.contextPath}/">
                                                 </center>
                                             </div>
                                             <div class="ng-scope" ng-show="menu==5" style="margin-left:50px">
-                                                
+
                                                 <div class="form-div">
                                                     <form class="form-horizontal" id="myForm">
                                                         <div class="form-group">
@@ -871,20 +871,59 @@ ${pageContext.request.serverPort}${pageContext.request.contextPath}/">
                                                             <label class="col-md-2 control-label">结束时间</label>
 
                                                             <div class="input-group date form_date col-md-5" data-date-format="yyyy-mm-dd" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
-                                                                <input class="form-control" name="startTime" type="text" value="" readonly>
+                                                                <input class="form-control" name="endTime" type="text" value="" readonly>
                                                                 <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
                                                                 <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
                                                             </div>
                                                         </div>
 
                                                         <div class="form-group">
+                                                            <label for="taskName" class="col-md-2 control-label">任务名称</label>
+                                                            <div class="col-md-5">
+                                                                <input type="text" class="form-control" id="taskName" name="taskName" placeholder="请输入任务名称">
+                                                            </div>
+                                                        </div>
+
+
+                                                        <div class="form-group">
+                                                            <label for="taskContent" class="col-md-2 control-label">任务内容</label>
+                                                            <div class="col-md-5">
+                                                                <textarea class="form-control" rows="3" id="taskContent" name="taskContent" placeholder="请输入任务内容"></textarea>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <label class="col-md-2 control-label">VR内容</label>
+                                                            <div class="col-md-5">
+                                                                <select id="usertype" name="usertype" class="selectpicker show-tick form-control" data-live-search="false">
+                                                                    <option value="0">地图</option>
+                                                                    <option value="1">元素大作战</option>
+                                                                    <option value="2">氧气制取及性质</option>
+                                                                    <option value="3">细胞怎样构成生命体</option>
+                                                                    <option value="4">光的折射、透镜</option>
+                                                                    <option value="5">电与磁</option>
+                                                                    <option value="6">认识地</option>
+                                                                    <option value="7">从世界看中国</option>
+                                                                    <option value="8">人体内的营养元素</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="form-group">
                                                             <label class="col-sm-2 control-label">群组列表</label>
                                                             <label class="col-sm-10 control-label">&nbsp;</label>
-                                                            <c:forEach items="${sessionScope.groups}" var="group">
-                                                                <div class="checkbox col-sm-6">
-                                                                    <label><input type="checkbox" name="groupId" id="group_input_checkbox" value="${group.id }" >${group.groupName}</label>
-                                                                </div>
-                                                            </c:forEach>
+                                                            <div style="margin-left: 100px">
+                                                                <c:forEach items="${sessionScope.groups}" var="group">
+                                                                    <div class="checkbox col-sm-6">
+                                                                        <label><input type="checkbox" name="groupId" id="group_input_checkbox" value="${group.id }" >${group.groupName}</label>
+                                                                    </div>
+                                                                </c:forEach>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="modal-footer" style="text-align:center">
+                                                            <button type="button" class="btn btn-primary" id="addTaskBtn">添加</button>
+                                                            <!--                                                            <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>-->
                                                         </div>
 
                                                     </form>
@@ -1259,6 +1298,7 @@ ${pageContext.request.serverPort}${pageContext.request.contextPath}/">
 -->
 
                 <!-- 发布任务的模态框 -->
+                <!--
                 <div class="modal fade" id="taskAddModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
@@ -1270,68 +1310,72 @@ ${pageContext.request.serverPort}${pageContext.request.contextPath}/">
 
 
                             <div class="modal-body">
-                                <form class="form-horizontal" id="myForm">
-                                    <div class="form-group">
-                                        <label class="col-md-2 control-label">任务名称</label>
-                                        <div class="col-sm-10">
-                                            <input type="text" class="form-control" name="taskName" id="taskNameInput" placeholder="学习Py基础语法">
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label class="col-md-2 control-label">任务描述</label>
-                                        <div class="col-sm-10">
-                                            <textarea class="form-control" name="taskDesc" id="taskDescInput"></textarea>
-                                        </div>
-                                    </div>
-
-
-                                    <div class="form-group">
-                                        <label class="col-md-2 control-label">开始时间</label>
-
-                                        <div class="input-group date form_date col-md-5" data-date-format="yyyy-mm-dd" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
-                                            <input class="form-control" name="startTime" type="text" value="" readonly>
-                                            <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
-                                            <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label class="col-md-2 control-label">结束时间</label>
-
-                                        <div class="input-group date form_date col-md-5" data-date="" data-date-format="yyyy-mm-dd" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
-                                            <input class="form-control" name="endTime" size="16" type="text" value="" readonly>
-                                            <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
-                                            <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
-                                        </div>
-                                    </div>
-
-
-
-
-                                    <div class="form-group">
-                                        <label class="col-md-2 control-label">群组列表</label>
-                                        <label class="col-md-10 control-label">&nbsp;</label>
-                                        <c:forEach items="${sessionScope.groups}" var="group">
-                                            <div class="checkbox col-sm-6">
-                                                <label>
-								    <input type="checkbox" name="groupId" id="group_input_checkbox" value="${group.id }" >${group.groupName }
-								  </label>
+                                <center>
+                                    <form class="form-horizontal" id="myForm">
+                                        <div class="form-group">
+                                            <label class="col-md-2 control-label">任务名称</label>
+                                            <div class="col-sm-10">
+                                                <input type="text" class="form-control" name="taskName" id="taskNameInput" placeholder="学习Py基础语法">
                                             </div>
-                                        </c:forEach>
-                                    </div>
+                                        </div>
 
-                                </form>
+                                        <div class="form-group">
+                                            <label class="col-md-2 control-label">任务描述</label>
+                                            <div class="col-sm-10">
+                                                <textarea class="form-control" name="taskDesc" id="taskDescInput"></textarea>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="form-group">
+                                            <label class="col-md-2 control-label">开始时间</label>
+
+                                            <div class="input-group date form_date col-md-5" data-date-format="yyyy-mm-dd" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+                                                <input class="form-control" name="startTime" type="text" value="" readonly>
+                                                <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+                                                <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="col-md-2 control-label">结束时间</label>
+
+                                            <div class="input-group date form_date col-md-5" data-date="" data-date-format="yyyy-mm-dd" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+                                                <input class="form-control" name="endTime" size="16" type="text" value="" readonly>
+                                                <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+                                                <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                                            </div>
+                                        </div>
+
+
+
+
+                                        <div class="form-group">
+                                            <label class="col-md-2 control-label">群组列表</label>
+                                            <label class="col-md-10 control-label">&nbsp;</label>
+                                            <c:forEach items="${sessionScope.groups}" var="group">
+                                                <div class="checkbox col-sm-6">
+                                                    <label>
+								                    <input type="checkbox" name="groupId" id="group_input_checkbox" value="${group.id }" >${group.groupName }
+								                </label>
+                                                </div>
+                                            </c:forEach>
+                                        </div>
+
+
+                                    </form>
+                                </center>
                             </div>
 
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
                                 <button type="button" class="btn btn-primary" id="addTaskBtn">添加</button>
+                                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
                             </div>
 
                         </div>
                     </div>
                 </div>
+-->
 
 
                 <h1>jjjj${groups}</h1>
