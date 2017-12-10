@@ -165,10 +165,7 @@ ${pageContext.request.serverPort}${pageContext.request.contextPath}/">
         <body ng-app="myApp" ng-controller="mainCtrl" style="background-color:#fbf8f8">
 
             <script>
-                var app = angular.module("myApp", []);
-                app.controller("mainCtrl", function($scope) {
-                    $scope.menu = 1;
-                });
+                var app = angular.module("myApp", []); app.controller("mainCtrl", function($scope) { $scope.menu = 1; });
 
             </script>
 
@@ -180,6 +177,12 @@ ${pageContext.request.serverPort}${pageContext.request.contextPath}/">
             <script type="text/javascript">
                 $(function() {
                     
+                    
+                   
+                    
+                    if(navigateIndex == 3){
+                        
+                    }
                     
                     //全选按钮
                     $('#selectAll').click(function() {
