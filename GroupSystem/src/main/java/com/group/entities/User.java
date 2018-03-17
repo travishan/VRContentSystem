@@ -13,6 +13,10 @@ public class User {
 	//身份，0：代表学生 1：代表老师
 	private String identity;
 	
+	public static final String STUDENT = "0";
+	public static final String TEACHER = "1";
+	public static final String MANAGER = "2";
+	
 	//老师与学生加入的群组
 	private List<Group> groups = new ArrayList<Group>(); 
 	
